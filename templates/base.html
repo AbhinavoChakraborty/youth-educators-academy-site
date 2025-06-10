@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Youth Educators Academy</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <!-- Include Alpine.js in your base.html -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <style>
+
+        @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+        animation: fadeUp 0.5s ease-out both;
+        }
+
+        .menu-open span:nth-child(1) {
+            transform: rotate(45deg) translateY(6px);
+        }
+
+        .menu-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-open span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-6px);
+        }
+
+        .transition-transform {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-[#3b2f2f] font-sans">
+    <!-- Navbar -->
+    <nav
+        class="fixed top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+            <div class="flex items-center space-x-3">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="YEA Logo"
+                    class="w-10 h-10 rounded-full shadow-md" />
+                <a href="{{ url_for('index') }}" class="text-white font-bold text-xl">Youth Educators Academy</a>
+            </div>
+              
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-8 text-white font-semibold">
+                <li><a href="{{ url_for('index') }}" class="hover:text-yellow-900 transition">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="hover:text-yellow-900 transition">About Us</a></li>
+                <li><a href="{{ url_for('courses') }}" class="hover:text-yellow-900 transition">Courses</a></li>
+                <li><a href="{{ url_for('faculty') }}" class="hover:text-yellow-900 transition">Faculty</a></li>
+                <!-- <li><a href="{{ url_for('testimonials') }}" class="hover:text-yellow-900 transition">Testimonials</a>
+                </li> -->
+                <li><a href="{{ url_for('gallery') }}" class="hover:text-yellow-900 transition">Gallery</a></li>
+                <li><a href="{{ url_for('contact') }}" class="hover:text-yellow-900 transition">Contact</a></li>
+            </ul>
+            <!-- Hamburger Menu -->
+            <button id="menu-btn"
+                class="md:hidden flex flex-col space-y-1.5 focus:outline-none transition-transform z-50"
+                aria-label="Toggle menu">
+                <span class="block w-6 h-0.5 bg-white transition-transform"></span>
+                <span class="block w-6 h-0.5 bg-white transition-transform"></span>
+                <span class="block w-6 h-0.5 bg-white transition-transform"></span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden fixed top-0 right-0 w-3/5 h-full bg-yellow-300/90 backdrop-blur-sm pt-20 pr-6 pl-4 space-y-4 text-yellow-900 font-semibold text-lg transition-all duration-300 ease-in-out opacity-0 translate-x-full z-40 shadow-lg">
+            <ul class="space-y-4">
+                <li><a href="{{ url_for('index') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">Home</a></li>
+                <li><a href="{{ url_for('about') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">About Us</a></li>
+                <li><a href="{{ url_for('courses') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">Courses</a></li>
+                <li><a href="{{ url_for('faculty') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">Faculty</a></li>
+                <!-- <li><a href="{{ url_for('testimonials') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">Testimonials</a>
+                </li> -->
+                <li><a href="{{ url_for('gallery') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">Gallery</a></li>
+                <li><a href="{{ url_for('contact') }}"
+                        class="block border-b border-yellow-500 pb-2 text-xl hover:text-yellow-700">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Social Media Floating Icons -->
+    <!-- <div class="fixed top-1/3 left-0 z-50 space-y-3 pl-1">
+        <!-- Facebook -->
+        <!-- <a href="https://facebook.com" target="_blank"
+            class="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-2 py-2 rounded-r-full shadow-md group transition-all duration-300 w-10 hover:w-40">
+            <i class="fab fa-facebook-f text-xl mx-auto group-hover:mx-2"></i>
+            <span class="hidden group-hover:inline ml-2">Facebook</span>
+        </a>
+     -->
+        <!-- Instagram -->
+        <!-- <a href="https://instagram.com" target="_blank"
+            class="flex items-center bg-pink-500 hover:bg-pink-600 text-white px-2 py-2 rounded-r-full shadow-md group transition-all duration-300 w-10 hover:w-40">
+            <i class="fab fa-instagram text-xl mx-auto group-hover:mx-2"></i>
+            <span class="hidden group-hover:inline ml-2">Instagram</span>
+        </a>
+     -->
+        <!-- WhatsApp -->
+        <!-- <a href="https://wa.me/919999999999" target="_blank"
+            class="flex items-center bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-r-full shadow-md group transition-all duration-300 w-10 hover:w-44">
+            <i class="fab fa-whatsapp text-xl mx-auto group-hover:mx-2"></i>
+            <span class="hidden group-hover:inline ml-2">WhatsApp Enquiry</span>
+        </a> -->
+    
+        <!-- YouTube -->
+        <!-- <a href="https://youtube.com/@yourchannel" target="_blank"
+            class="flex items-center bg-red-600 hover:bg-red-700 text-white px-2 py-2 rounded-r-full shadow-md group transition-all duration-300 w-10 hover:w-40">
+            <i class="fab fa-youtube text-xl mx-auto group-hover:mx-2"></i>
+            <span class="hidden group-hover:inline ml-2">YouTube</span>
+        </a> -->
+    <!-- </div>  -->
+  
+
+    <!-- Main Content -->
+    <main class="pt-20 min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 shadow-md z-50 px-6 py-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    
+            <!-- Logo + Academy Info -->
+            <div class="flex flex-col items-start">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Youth Educators Academy Logo" class="w-14 h-14 mb-2">
+                <h3 class="text-lg font-semibold">Youth Educators Academy</h3>
+                <p class="text-sm">From Jr. KG to 12th Commerce</p>
+            </div>
+    
+            <!-- Important Links -->
+            <div>
+                <h4 class="text-md font-semibold mb-2">Important Links</h4>
+                <ul class="text-sm space-y-1">
+                    <li><a href="about" class="hover:underline">About Us</a></li>
+                    <li><a href="courses" class="hover:underline">Courses</a></li>
+                    <li><a href="gallery" class="hover:underline">Gallery</a></li>
+                    <!-- <li><a href="testimonials" class="hover:underline">Testimonials</a></li> -->
+                    <li><a href="contact" class="hover:underline">Contact</a></li>
+                </ul>
+            </div>
+    
+            <!-- Location Map -->
+            <div>
+                <h4 class="text-md font-semibold mb-2">Locate Us</h4>
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10256.941972522209!2d73.24335762630282!3d19.162617935699185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7edf0e466cd3f%3A0x7103965e3d33063f!2sYouth%20Educator&#39;s%20academy!5e0!3m2!1sen!2sin!4v1749459352730!5m2!1sen!2sin"
+                    width="100%" height="150" class="rounded shadow-md" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+    
+            <!-- Contact Us Section -->
+            <div>
+                <h4 class="text-md font-semibold mb-2">Contact Us</h4>
+                <p class="text-sm flex items-center gap-2">📞 +91 88305 84314</p>
+                <p class="text-sm flex items-center gap-2">✉️ youtheducatoracademy@gmail.com</p>
+                <p class="text-sm flex items-center gap-2">🏫 Shop No. 13, Trimurti Apartment, Near Sai Baba Mandir, Tata colony, Badlapur(west) - 421503</p>
+            
+                <!-- Social Media Links (Below Contact Info) -->
+                <div class="mt-4">
+                    <p class="text-sm text-brown-900 font-semibold mb-2">Follow Us</p>
+                    <div class="flex space-x-3">
+                        <a href="https://facebook.com" target="_blank"
+                            class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank"
+                            class="bg-pink-500 hover:bg-pink-600 text-white p-2 rounded-full transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/8830584314" target="_blank"
+                            class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://youtube.com/@youtheducatorsacademy" target="_blank"
+                            class="bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+  
+  
+        </div>
+    
+        <div class="text-center text-xs mt-10 border-t border-brown-300 pt-4 text-brown-900">
+            © 2025 Youth Educators Academy | All Rights Reserved
+        </div>
+    </footer>
+      
+      
+
+    <!-- JS -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            const isOpen = menuBtn.classList.toggle('menu-open');
+            if (isOpen) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('opacity-0', 'translate-x-full');
+                    mobileMenu.classList.add('opacity-100', 'translate-x-0');
+                }, 10);
+            } else {
+                mobileMenu.classList.remove('opacity-100', 'translate-x-0');
+                mobileMenu.classList.add('opacity-0', 'translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+<!-- <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10256.941972522209!2d73.24335762630282!3d19.162617935699185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7edf0e466cd3f%3A0x7103965e3d33063f!2sYouth%20Educator&#39;s%20academy!5e0!3m2!1sen!2sin!4v1749459352730!5m2!1sen!2sin"
+    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"></iframe> -->

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-16 px-4 md:px-20 bg-gradient-to-b from-yellow-50 to-white">
+    <div class="text-center mb-12 max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-yellow-800">Structured Learning for Every Step</h2>
+        <p class="mt-4 text-gray-700 text-lg leading-relaxed">
+            At <strong>Youth Educators Academy</strong>, we believe in nurturing young minds from the foundational
+            levels to professional aspirations.
+            Each course is crafted with an understanding-first approach, derived from our own academic experiences. We
+            follow a disciplined schedule
+            while keeping learning interactive, helping every student grow confidently and excel academically.
+        </p>
+    </div>
+
+    <div class="grid gap-10">
+        <!-- Course Card Template -->
+        {% set courses = [
+        {
+        'icon': 'fa-child',
+        'title': 'Jr. KG to 5th',
+        'desc': 'Interactive classes that build a love for learning with strong fundamentals and hands-on activity-based
+        education.',
+        'points': ['Fun-based teaching', 'Foundational concepts', 'Interactive games & activities'],
+        'more': 'Our approach for this stage is centered on nurturing curiosity, improving communication skills, and
+        developing cognitive abilities through a blend of play and academics.'
+        },
+        {
+        'icon': 'fa-book-open-reader',
+        'title': '6th to 10th',
+        'desc': 'A solid bridge from foundation to board exams with conceptual learning and consistent assessment.',
+        'points': ['Chapter-wise tests', 'Doubt-solving sessions', 'Concept strengthening'],
+        'more': 'We help students tackle complex topics while preparing them for competitive exams. Periodic assessments
+        and doubt-clearing keep them exam-ready.'
+        },
+        {
+        'icon': 'fa-briefcase',
+        'title': '11th & 12th Commerce',
+        'desc': 'In-depth preparation for boards and entrance-level commerce exams.',
+        'points': ['Accountancy, Economics, BST', 'Exam-oriented training', 'Practical concept teaching'],
+        'more': 'Commerce students are taught not only to score but to understand real-world applications of finance,
+        law, and trade principles using updated materials.'
+        },
+        {
+        'icon': 'fa-university',
+        'title': 'Graduation Level Commerce',
+        'desc': 'Core commerce subjects for B.Com/BBA students to strengthen academic excellence.',
+        'points': ['Corporate Accounting', 'Business Law, Costing', 'Taxation & Management'],
+        'more': 'College students receive advanced-level training that helps bridge the gap between academic learning
+        and practical business application.'
+        },
+        {
+        'icon': 'fa-award',
+        'title': 'CA Foundation Preparation',
+        'desc': 'Kickstart your CA journey with the right foundation and faculty guidance.',
+        'points': ['Accounts, Law, Economics, Math', 'MCQ Practice & Time Management', 'Updated ICAI Curriculum'],
+        'more': 'Our CA prep course is driven by practice and precision with smart tips, mock tests, and time-bound
+        preparation to clear your exams confidently.'
+        }
+        ] %}
+
+        {% for course in courses %}
+        <div class="bg-white rounded-2xl p-6 border-t-4 shadow-md hover:shadow-xl transition duration-300 relative border-yellow-{{ (loop.index0+4)*100 }}"
+            x-data="{ open: false }">
+            <div class="text-5xl text-yellow-500 mb-4 text-center">
+                <i class="fas {{ course.icon }}"></i>
+            </div>
+            <h3 class="text-xl font-bold text-yellow-800 mb-2 text-center">{{ course.title }}</h3>
+            <p class="text-sm text-gray-600 text-center mb-4">{{ course.desc }}</p>
+            <ul class="list-disc list-inside text-sm text-yellow-900 space-y-1 mb-4">
+                {% for point in course.points %}<li>{{ point }}</li>{% endfor %}
+            </ul>
+            <div x-show="open" x-transition class="text-sm text-gray-600 bg-yellow-50 p-3 rounded-lg mb-4">{{
+                course.more }}</div>
+            <div class="flex justify-between items-center">
+                <button @click="open = !open" class="text-yellow-700 hover:underline">Read <span
+                        x-text="open ? 'Less' : 'More'"></span></button>
+                <a href="/contact#enquiry-form"
+                    class="bg-yellow-500 text-white text-sm px-4 py-2 rounded hover:bg-yellow-600 transition-all">Enroll
+                    Now</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Alpine.js for toggle animation -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}

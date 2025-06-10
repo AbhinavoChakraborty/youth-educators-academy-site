@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    @keyframes typing {
+        from {
+            width: 0
+        }
+
+        to {
+            width: 100%
+        }
+    }
+
+    @keyframes blink {
+
+        0%,
+        100% {
+            border-color: transparent
+        }
+
+        50% {
+            border-color: #facc15
+        }
+
+        /* Tailwind yellow-400 */
+    }
+
+    .animate-typing {
+        width: fit-content;
+        animation:
+            typing 4s steps(40, end),
+            blink 0.75s step-end infinite;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid;
+    }
+</style>
+
+
+  
+    
+
+<!-- Hero / Intro Section -->
+<section class="text-center py-16 px-6 bg-yellow-50">
+    <h1 class="text-4xl md:text-5xl font-bold text-yellow-800 mb-6 animate-fade-in-up">
+        Welcome to Youth Educators Academy
+    </h1>
+
+        <div class="mt-2">
+            <p id="typewriter" class="text-yellow-700 italic text-lg font-semibold"></p>
+        </div>
+
+        <script>
+            const text = "'Of the youth, by the youth, for the youth.'";
+            const words = text.split(" ");
+            const typewriter = document.getElementById("typewriter");
+
+            let index = 0;
+            function typeWords() {
+                if (index < words.length) {
+                    typewriter.innerHTML += words[index] + " ";
+                    index++;
+                    setTimeout(typeWords, 500); // speed between words
+                }
+            }
+
+            window.addEventListener("load", typeWords);
+        </script>
+          
+
+    <p class="text-lg md:text-xl text-yellow-900 max-w-3xl mx-auto leading-relaxed">
+        We’re not just another tuition class—we’re a youth-led movement where every student feels seen, heard, and supported
+        through relatable faculty, personalized study plans, and a modern learning vibe.
+    </p>
+</section>
+
+<!-- What We Offer Section -->
+<section class="py-16 bg-white px-6">
+    <h2 class="text-3xl font-bold text-center text-yellow-800 mb-12">What We Offer</h2>
+
+    <div x-data="{ openIndex: null }" class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+        <!-- Card Component -->
+        <template x-for="(feature, index) in [
+            {
+                title: 'One-on-One Learning',
+                desc: 'Tailored sessions to each student’s pace and learning style for maximum results.',
+                icon: 'one-on-one-learning.svg',
+                color: 'yellow'
+            },
+            {
+                title: 'Regular Test Series',
+                desc: 'Weekly and monthly assessments to track and improve academic progress.',
+                icon: 'test-series.svg',
+                color: 'blue'
+            },
+            {
+                title: 'Career Guidance Lectures',
+                desc: 'Helping students choose the right path through expert mentorship and counseling.',
+                icon: 'career-guidance.svg',
+                color: 'green'
+            },
+            {
+                title: 'Best Infrastructure',
+                desc: 'Modern classrooms, digital boards, and student-friendly facilities for optimal learning.',
+                icon: 'infrastructure.svg',
+                color: 'red'
+            },
+            {
+                title: 'Experienced Faculty',
+                desc: 'Dedicated educators with deep expertise in subjects and nurturing approach.',
+                icon: 'experienced-faculty.svg',
+                color: 'purple'
+            },
+            {
+                title: 'Friendly Environment',
+                desc: 'A positive, encouraging atmosphere that boosts confidence and participation.',
+                icon: 'friendly-env.svg',
+                color: 'pink'
+            }
+        ]" :key="index">
+
+            <div @click="openIndex = openIndex === index ? null : index"
+                class="relative group p-6 rounded-xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-1 cursor-pointer"
+                :class="`bg-${feature.color}-100`">
+                <div class="flex justify-center mb-4 transform transition duration-300 group-hover:scale-110">
+                    <img :src="`/static/images/icons/${feature.icon}`" :alt="feature.title" class="w-16 h-16">
+                </div>
+                <h3 :class="`text-xl font-semibold text-${feature.color}-800 text-center`" x-text="feature.title"></h3>
+
+                <!-- Description overlay -->
+                <div x-show="openIndex === index" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+                    class="absolute inset-0 bg-black bg-opacity-90 text-white flex items-center justify-center rounded-xl p-4 text-center z-10">
+                    <p x-text="feature.desc" class="text-sm md:text-base"></p>
+                </div>
+            </div>
+        </template>
+    </div>
+</section>
+
+<!-- Courses Section -->
+<section class="py-16 px-6 bg-gradient-to-br from-yellow-50 to-yellow-100">
+    <h2 class="text-3xl font-bold text-center text-yellow-800 mb-12">Courses We Offer</h2>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto" x-data>
+
+        <!-- Card 1 -->
+        <div class="bg-gradient-to-br from-yellow-100 to-orange-400 rounded-2xl p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-yellow-400 hover:scale-[1.02]"
+            x-intersect="$el.classList.add('animate-fade-up')">
+            <div class="mb-4 text-center">
+                <img src="{{ url_for('static', filename='images/icons/junior.svg') }}" alt="Jr KG Icon" class="w-10 h-10 mx-auto" />
+            </div>
+              
+            <h3 class="text-xl font-bold text-yellow-800 mb-2 text-center">Jr. KG to 5th Standard</h3>
+            <p class="text-sm text-yellow-700 text-center mb-4">Building strong foundations through interactive learning
+            </p>
+            <ul class="list-disc list-inside text-yellow-900 text-sm space-y-1">
+                <li>Foundation Learning</li>
+                <li>Activity-based Classes</li>
+                <li>Fun with Basics</li>
+            </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-gradient-to-br from-indigo-100 to-blue-400 rounded-2xl p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-yellow-400 hover:scale-[1.02]"
+            x-intersect="$el.classList.add('animate-fade-up')">
+            <div class="mb-4 text-center">
+                <img src="{{ url_for('static', filename='images/icons/intermediate.svg') }}" alt="Jr KG Icon" class="w-10 h-10 mx-auto" />
+            </div>
+            <h3 class="text-xl font-bold text-yellow-800 mb-2 text-center">6th to 10th Standard</h3>
+            <p class="text-sm text-yellow-700 text-center mb-4">Focused on board exam success with concept clarity</p>
+            <ul class="list-disc list-inside text-yellow-900 text-sm space-y-1">
+                <li>Board Exam Preparation</li>
+                <li>Chapter-wise Testing</li>
+                <li>Doubt Solving & More</li>
+            </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-gradient-to-br from-emerald-100 to-green-400 rounded-2xl p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-yellow-400 hover:scale-[1.02]"
+            x-intersect="$el.classList.add('animate-fade-up')">
+            <div class="mb-4 text-center">
+                <img src="{{ url_for('static', filename='images/icons/senior.svg') }}" alt="Jr KG Icon" class="w-10 h-10 mx-auto" />
+            </div>
+            <h3 class="text-xl font-bold text-yellow-800 mb-2 text-center">11th & 12th Commerce</h3>
+            <p class="text-sm text-yellow-700 text-center mb-4">Preparing for college with practical understanding</p>
+            <ul class="list-disc list-inside text-yellow-900 text-sm space-y-1">
+                <li>Concept Clarity</li>
+                <li>Practice-Oriented Teaching</li>
+                <li>Preparation for University</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- Include Alpine.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+<!-- Achievers Section (Right to Left Slider) -->
+<section class="py-16 bg-gradient-to-b from-yellow-50 to-white px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-yellow-900 mb-12">Our Achievers</h2>
+
+    <div x-data="carousel()" x-init="start()" class="max-w-xl mx-auto overflow-hidden relative">
+        <div class="flex transition-transform duration-500 ease-in-out"
+            :style="`transform: translateX(-${current * 100}%);`">
+            <template x-for="student in students" :key="student.name">
+                <div class="flex-shrink-0 w-full text-center space-y-4">
+                    <img :src="student.img" alt=""
+                        class="w-32 h-32 rounded-full ring-4 ring-yellow-500 mx-auto object-cover shadow-xl">
+                    <h3 class="text-xl font-semibold text-yellow-900" x-text="student.name"></h3>
+                    <p class="text-yellow-700 text-sm" x-text="student.grade"></p>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section (Right to Left Slider) -->
+<section class="py-20 bg-gradient-to-r from-yellow-50 via-pink-50 to-yellow-100 px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-yellow-900 mb-12">What Students Say</h2>
+
+    <div x-data="carouselTestimonials()" x-init="start()" class="max-w-xl mx-auto overflow-hidden relative">
+        <div class="flex transition-transform duration-500 ease-in-out"
+            :style="`transform: translateX(-${index * 100}%);`">
+            <template x-for="t in testimonials" :key="t.name">
+                <div class="flex-shrink-0 w-full bg-green-100 rounded-xl p-6 shadow-lg text-center space-y-4">
+                    <img :src="t.img" alt=""
+                        class="w-20 h-20 rounded-full ring-2 ring-white mx-auto object-cover shadow-md">
+                    <p class="italic text-green-800 text-lg" x-text="`\u201C${t.quote}\u201D`"></p>
+                    <p class="font-semibold text-green-900" x-text="`- ${t.name}, ${t.grade}`"></p>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>
+
+<script>
+    function carousel() {
+        return {
+            current: 0,
+            students: [
+                { name: 'Ubed Walmiki', grade: 'Class 11 - 94%', img: '/static/images/students/student1.jpg' },
+                { name: 'Shubhi Pandey', grade: 'Class  -10 84%', img: '/static/images/students/student2.jpg' },
+                { name: 'Pawan Gupta', grade: 'Class 10 - 81%', img: '/static/images/students/student3.jpg' },
+                { name: 'Shraddha Singh', grade: 'Class 10 - 86%', img: '/static/images/students/student4.jpg' },
+                { name: 'Mayank Giri', grade: 'Class  -12 83%', img: '/static/images/students/student5.jpg' }, 
+                { name: 'Prakash Yadav', grade: 'Class  -2 92%', img: '/static/images/students/student6.jpg' }, 
+                { name: 'Pari Pandey', grade: 'Class  -5 91%', img: '/static/images/students/student7.jpg' }, 
+                { name: 'Vikas Yadav', grade: 'Class  -4 90%', img: '/static/images/students/student8.jpg' }, 
+                { name: 'Aakash Yadav', grade: 'Class  -5 89%', img: '/static/images/students/student9.jpg' },
+            ],
+            start() {
+                setInterval(() => {
+                    this.current = (this.current + 1) % this.students.length;
+                }, 3000);
+            }
+        }
+    }
+
+    function carouselTestimonials() {
+        return {
+            index: 0,
+            testimonials: [
+                { name: 'Mayank Giri', grade: 'Class 8', quote: 'I started enjoying studies only after joining here.', img: '/static/images/students/student5.jpg' },
+                { name: 'Shraddha Singh', grade: 'Class 10', quote: 'The teachers here really care and help you improve.', img: '/static/images/students/student4.jpg' },
+                { name: 'Shubhi Pandey', grade: 'Class 12', quote: 'Thanks to YEA, I enjoyed every sesion!', img: '/static/images/students/student2.jpg' }
+            ],
+            start() {
+                setInterval(() => {
+                    this.index = (this.index + 1) % this.testimonials.length;
+                }, 4000);
+            }
+        }
+    }
+</script>
+
+<style>
+    /* Prevent scroll jump on mobile */
+    html,
+    body {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+    }
+</style>
+
+  
+
+{% endblock %}

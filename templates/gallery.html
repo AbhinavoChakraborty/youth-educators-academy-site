@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-16 px-6 md:px-20 bg-gradient-to-br from-yellow-50 to-white">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-yellow-800">Gallery</h2>
+        <p class="text-gray-700 mt-2 text-lg max-w-2xl mx-auto">
+            At Youth Educators Academy, we believe in holistic education. Our classes aim to create a friendly and
+            engaging environment where students can grow not just academically but also socially and emotionally. We
+            organize a variety of events such as farewell parties, achievement celebrations, and festive gatherings to
+            keep the learning space vibrant and joyous.
+        </p>
+    </div>
+
+    <div class="space-y-16">
+        <!-- Farewell Party -->
+        <div>
+            <h3 class="text-2xl font-bold text-yellow-800 mb-4">Farewell Party</h3>
+            <p class="text-gray-600 mb-6">A heartfelt sendoff for our graduating students filled with laughter,
+                performances, and warm memories.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <img src="/static/images/gallery/farewell/farewell2.png" alt="Festive Event" class="rounded-lg shadow-md">
+                <img src="/static/images/gallery/farewell/farewell3.png" alt="Festive Event" class="rounded-lg shadow-md">
+                <!-- <img src="/static/images/farewell3.jpg" alt="Farewell Party" class="rounded-lg shadow-md"> -->
+            </div>
+        </div>
+
+        <!-- Achievements Day -->
+        <div>
+            <h3 class="text-2xl font-bold text-yellow-800 mb-4">Achievements Day</h3>
+            <p class="text-gray-600 mb-6">Recognizing the outstanding academic and extracurricular accomplishments of
+                our
+                bright learners.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <img src="/static/images/achievement1.jpg" alt="Achievements Day" class="rounded-lg shadow-md">
+                <img src="/static/images/achievement2.jpg" alt="Achievements Day" class="rounded-lg shadow-md">
+                <img src="/static/images/achievement3.jpg" alt="Achievements Day" class="rounded-lg shadow-md">
+            </div>
+        </div>
+
+        <!-- Festive Celebrations -->
+        <div>
+            <h3 class="text-2xl font-bold text-yellow-800 mb-4">Festive Celebrations</h3>
+            <p class="text-gray-600 mb-6">We celebrate festivals like Diwali, Holi, and Christmas to help students
+                experience joy, unity, and cultural diversity.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <img src="/static/images/achievement3.jpg" alt="Achievements Day" class="rounded-lg shadow-md">
+                <!-- <img src="/static/images/gallery/farewell/farewell1.png" alt="Festive Event" class="rounded-lg shadow-md"> -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

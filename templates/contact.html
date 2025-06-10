@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-12 px-4 max-w-5xl mx-auto animate-fade-in">
+
+    <!-- Header -->
+    <div class="flex flex-col items-center mb-8 text-center">
+        <img src="/static/images/logo.png" alt="Academy Logo" class="w-24 h-24 mb-4">
+        <h2 class="text-3xl font-bold text-yellow-800">Youth Educators Academy</h2>
+        <p class="text-gray-700">123 Learning Lane, Mumbai, Maharashtra, India</p>
+        <p class="text-gray-700">Phone: +91 9876543210 | Email: info@youtheducatorsacademy.in</p>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex justify-center space-x-6 mb-10">
+        <a href="https://wa.me/919876543210" target="_blank"><i
+                class="fab fa-whatsapp text-3xl text-green-500 hover:scale-110 transition"></i></a>
+        <a href="https://www.youtube.com/@YouthEducatorsAcademy" target="_blank"><i
+                class="fab fa-youtube text-3xl text-red-600 hover:scale-110 transition"></i></a>
+        <a href="https://www.facebook.com/youtheducatorsacademy" target="_blank"><i
+                class="fab fa-facebook text-3xl text-blue-600 hover:scale-110 transition"></i></a>
+        <a href="https://www.instagram.com/youtheducatorsacademy" target="_blank"><i
+                class="fab fa-instagram text-3xl text-pink-500 hover:scale-110 transition"></i></a>
+    </div>
+
+    <!-- Google Map -->
+    <div class="w-full mb-12">
+        <iframe class="w-full h-64 rounded-xl shadow-md" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10256.941972522209!2d73.24335762630282!3d19.162617935699185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7edf0e466cd3f%3A0x7103965e3d33063f!2sYouth%20Educator&#39;s%20academy!5e0!3m2!1sen!2sin!4v1749459352730!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- Flash Message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="mb-4 px-4 py-2 rounded bg-green-100 text-green-800 font-medium">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Enquiry Form -->
+    <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 p-8 rounded-xl shadow-xl">
+        <h3 class="text-2xl font-bold text-yellow-800 mb-6">Admission Enquiry Form</h3>
+        <form id="enquiryForm" method="POST" action="/contact" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Full Name *</label>
+                <input type="text" id="name" name="name" required class="mt-1 p-2 w-full border rounded-md">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required class="mt-1 p-2 w-full border rounded-md"
+                    oninput="validatePhone()">
+                <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">Enter valid 10-digit number starting with
+                    6-9.</p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Email Address *</label>
+                <input type="email" id="email" name="email" required class="mt-1 p-2 w-full border rounded-md">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Course Interested In *</label>
+                <select id="course" name="course" required class="mt-1 p-2 w-full border rounded-md">
+                    <option value="">-- Select a course --</option>
+                    <option>Jr. KG</option>
+                    <option>Sr. KG</option>
+                    <option>1st</option>
+                    <option>2nd</option>
+                    <option>3rd</option>
+                    <option>4th</option>
+                    <option>5th</option>
+                    <option>6th</option>
+                    <option>7th</option>
+                    <option>8th</option>
+                    <option>9th</option>
+                    <option>10th</option>
+                    <option>11th Commerce</option>
+                    <option>12th Commerce</option>
+                    <option>Graduation Level Commerce</option>
+                    <option>CA Foundation Preparation</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Preferred Contact Time</label>
+                <select id="contactTime" name="contactTime" class="mt-1 p-2 w-full border rounded-md">
+                    <option value="">-- Select --</option>
+                    <option>Morning (9 AM – 12 PM)</option>
+                    <option>Afternoon (12 PM – 4 PM)</option>
+                    <option>Evening (4 PM – 8 PM)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Your Query (Optional)</label>
+                <textarea id="message" name="query" rows="4" class="mt-1 p-2 w-full border rounded-md resize-none"
+                    placeholder="Write your questions or specific requirements here..."></textarea>
+            </div>
+
+            <button type="submit"
+                class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition">
+                Send
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+
+<!-- JavaScript Validation -->
+<script>
+    function validatePhone() {
+        const phone = document.getElementById('phone');
+        const error = document.getElementById('phoneError');
+        const phoneRegex = /^[6-9]\d{9}$/;
+
+        if (!phoneRegex.test(phone.value)) {
+            phone.classList.add('border-red-500');
+            error.classList.remove('hidden');
+            return false;
+        } else {
+            phone.classList.remove('border-red-500');
+            error.classList.add('hidden');
+            return true;
+        }
+    }
+
+    document.getElementById('enquiryForm').addEventListener('submit', function (e) {
+        if (!validatePhone()) {
+            e.preventDefault();
+            return;
+        }
+
+        const email = document.getElementById("email").value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+            e.preventDefault();
+            alert("Enter a valid email address.");
+            return;
+        }
+    });
+</script>
+{% endblock %}

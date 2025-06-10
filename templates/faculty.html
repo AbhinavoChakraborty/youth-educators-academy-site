@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-16 px-6 md:px-20 bg-gradient-to-br from-yellow-50 to-white">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-yellow-800">Our Faculty</h2>
+        <p class="text-lg text-gray-700 mt-4 max-w-3xl mx-auto">
+            At Youth Educators Academy, our faculty members are not just teachers—they are mentors, innovators, and
+            passionate educators who understand what students truly need. Being young and dynamic, they bring a modern,
+            relatable approach to learning while having a deep command of the subjects they teach. Having experienced
+            the gaps in conventional education themselves, they’re dedicated to delivering learning in a way that makes
+            students feel confident, capable, and genuinely interested.
+        </p>
+    </div>
+
+    <!-- Faculty Group Photos -->
+    <div class="flex flex-col items-center space-y-6 mb-16 animate-fade-in">
+        <img src="/static/images/faculty/faculty1.jpg" alt="Faculty Group 1" class="rounded-xl shadow-xl w-full md:w-3/4">
+        <img src="/static/images/faculty/faculty5.png" alt="Faculty Group 2" class="rounded-xl shadow-xl w-full md:w-3/4">
+    </div>
+
+    <div class="text-center mb-10">
+        <h3 class="text-2xl font-bold text-yellow-700">Meet Our Mentors</h3>
+        <p class="text-gray-600 mt-2">Know more about the exceptional educators shaping our future minds</p>
+    </div>
+
+    <!-- Faculty Members Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Faculty Card 1 -->
+        <div
+            class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-500 transform hover:scale-105 transition duration-300 animate-fade-up">
+            <img src="/static/images/faculty/faculty2.jpg" alt="Faculty 1"
+                class="w-32 h-32 mx-auto rounded-full mb-4 shadow-md border-4 border-yellow-200">
+            <h3 class="text-xl font-semibold text-yellow-800 text-center">Mr. Atul Yadav</h3>
+            <p class="text-sm text-gray-600 text-center mt-2">B.Com, CA intermediate | 5+ Years Experience</p>
+            <p class="text-sm text-gray-700 mt-4 text-center">
+                Specializes in foundational education. Believes in hands-on learning and creative teaching strategies.
+            </p>
+        </div>
+
+        <!-- Faculty Card 2 -->
+        <div
+            class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-600 transform hover:scale-105 transition duration-300 animate-fade-up delay-100">
+            <img src="/static/images/faculty/faculty3.jpg" alt="Faculty 2"
+                class="w-32 h-32 mx-auto rounded-full mb-4 shadow-md border-4 border-yellow-300">
+            <h3 class="text-xl font-semibold text-yellow-800 text-center">Mr. Chandan Yadav</h3>
+            <p class="text-sm text-gray-600 text-center mt-2">B.Com | 6+ Years Experience</p>
+            <p class="text-sm text-gray-700 mt-4 text-center">
+                Expert in commerce subjects with a student-first approach. Known for simplifying complex topics.
+            </p>
+        </div>
+
+        <!-- Faculty Card 3 -->
+        <div
+            class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-700 transform hover:scale-105 transition duration-300 animate-fade-up delay-200">
+            <img src="/static/images/faculty/faculty4.jpg" alt="Faculty 3"
+                class="w-32 h-32 mx-auto rounded-full mb-4 shadow-md border-4 border-yellow-400">
+            <h3 class="text-xl font-semibold text-yellow-800 text-center">Mr. Karan</h3>
+            <p class="text-sm text-gray-600 text-center mt-2">B.com | 4+ Years Experience</p>
+            <p class="text-sm text-gray-700 mt-4 text-center">
+                Dedicated to helping commerce aspirants crack their exams with logic-driven techniques.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p0OaM67jN4o5VEfKZ8rDZT7brcfS8pCnVFDH2PMQfJ91Ad1TUz9wRmZmQGnMkkfVzj3WT6MDD6zO3JUMO4fdGA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock %}
