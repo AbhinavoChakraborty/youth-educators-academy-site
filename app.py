@@ -10,8 +10,8 @@ app.secret_key = "a88176a7ae237bbbf52d0bf0e523314b"
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'chakrabortyabhinavo@gmail.com'
-app.config['MAIL_PASSWORD'] = 'ffsx jtey kvrt zkdi'
+app.config['MAIL_USERNAME'] = 'youtheducatoracademy@gmail.com'
+app.config['MAIL_PASSWORD'] = 'byqa ihpz fung qqeo'
 
 mail = Mail(app)
 
@@ -43,7 +43,7 @@ def contact():
         msg = Message(
             subject="New Admission Enquiry",
             sender=app.config['MAIL_USERNAME'],
-            recipients=["chakrabortyabhinavo@gmail.com"],
+            recipients=["youtheducatoracademy@gmail.com"],
             body=f"Name: {name}\nPhone: {phone}\nEmail: {email}\nCourse: {course}\nQuery: {query}"
         )
         mail.send(msg)
